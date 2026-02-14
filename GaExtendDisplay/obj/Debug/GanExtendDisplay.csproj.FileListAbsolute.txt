@@ -12,3 +12,10 @@ D:\AutoBackup\开发\ElinMOD\GaExtendDisplay\obj\Debug\GanExtendDisplay.csproj.A
 D:\AutoBackup\开发\ElinMOD\GaExtendDisplay\obj\Debug\GanExtendDisplay.csproj.CoreCompileInputs.cache
 D:\AutoBackup\开发\ElinMOD\GaExtendDisplay\obj\Debug\GanExtendDisplay.dll
 D:\AutoBackup\开发\ElinMOD\GaExtendDisplay\obj\Debug\GanExtendDisplay.pdb
+C:\Users\gameg\Documents\GitHub\_bin\GanExtendDisplay\package.xml
+C:\Users\gameg\Documents\GitHub\_bin\GanExtendDisplay\GanExtendDisplay.dll
+C:\Users\gameg\Documents\GitHub\_bin\GanExtendDisplay\GanExtendDisplay.pdb
+C:\Users\gameg\Documents\GitHub\GaExtendDisplay\obj\Debug\GanExtendDisplay.csproj.AssemblyReference.cache
+C:\Users\gameg\Documents\GitHub\GaExtendDisplay\obj\Debug\GanExtendDisplay.csproj.CoreCompileInputs.cache
+C:\Users\gameg\Documents\GitHub\GaExtendDisplay\obj\Debug\GanExtendDisplay.dll
+C:\Users\gameg\Documents\GitHub\GaExtendDisplay\obj\Debug\GanExtendDisplay.pdb

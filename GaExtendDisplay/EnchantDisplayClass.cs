@@ -18,68 +18,80 @@ namespace GanExtendDisplay
 {
 	internal class EnchantDisplayClass {
 		public static void DNA_WriteNote_Prefix(DNA __instance, UINote n) {
-			if (__instance.slot >= 1) {
-				n.AddText("isGeneReqSlots".lang(__instance.slot.ToString() ?? ""), FontColor.Warning);
-			}
+                if (__instance.slot >= 1)
+                {
+                    n.AddText("isGeneReqSlots".lang(__instance.slot.ToString() ?? ""), FontColor.Warning);
+                }
 
-			if (!__instance.CanRemove()) {
-				n.AddText("isPermaGene".lang(), FontColor.Warning);
-			}
+                if (!__instance.CanRemove())
+                {
+                    n.AddText("isPermaGene".lang(), FontColor.Warning);
+                }
 
-			n.Space(4);
-			if (__instance.type == DNA.Type.Brain) {
-				SourceChara.Row row = EClass.sources.charas.map.TryGetValue(__instance.id);
-				if (row != null) {
-					string key = row.tactics.IsEmpty(EClass.sources.tactics.map.TryGetValue(row.id)?.id ?? EClass.sources.tactics.map.TryGetValue(row.job)?.id ?? "predator");
-					n.AddText("gene_info".lang(EClass.sources.tactics.map[key].GetName().ToTitleCase(), ""), FontColor.ButtonGeneral);
-				}
+                n.Space(4);
+                if (__instance.type == DNA.Type.Brain)
+                {
+                    SourceChara.Row row = EClass.sources.charas.map.TryGetValue(__instance.id);
+                    if (row != null)
+                    {
+                        string key = row.tactics.IsEmpty(EClass.sources.tactics.map.TryGetValue(row.id)?.id ?? EClass.sources.tactics.map.TryGetValue(row.job)?.id ?? "predator");
+                        n.AddText("gene_info".lang(EClass.sources.tactics.map[key].GetName().ToTitleCase(), ""), FontColor.ButtonGeneral);
+                    }
 
-				for (int i = 0; i < __instance.vals.Count; i += 2) {
-					int num = __instance.vals[i];
-					int num2 = __instance.vals[i + 1];
-					FontColor color = ((num2 >= 0) ? FontColor.Good : FontColor.Bad);
-					string @ref = (num + 1).ToString() ?? "";
-					string text = "";
-					num2 = Mathf.Abs(num2 / 20) + 1;
-					text = text + "[" + "*".Repeat(Mathf.Clamp(num2, 1, 5)) + ((num2 > 5) ? "+" : "") + "]";
-					n.AddText("gene_info_brain".lang(@ref, text), color);
-				}
+                    for (int i = 0; i < __instance.vals.Count; i += 2)
+                    {
+                        int num = __instance.vals[i];
+                        int num2 = __instance.vals[i + 1];
+                        FontColor color = ((num2 >= 0) ? FontColor.Good : FontColor.Bad);
+                        string @ref = (num + 1).ToString() ?? "";
+                        string text = "";
+                        num2 = Mathf.Abs(num2 / 20) + 1;
+                        text = text + "[" + "*".Repeat(Mathf.Clamp(num2, 1, 5)) + ((num2 > 5) ? "+" : "") + "]";
+                        n.AddText("gene_info_brain".lang(@ref, text), color);
+                    }
 
-				return;
-			}
+                    return;
+                }
 
-			for (int j = 0; j < __instance.vals.Count; j += 2) {
-				Element element = Element.Create(__instance.vals[j], __instance.vals[j + 1]);
-				string text2 = "";
-				int num3 = element.Value / 10;
-				FontColor color2 = FontColor.Good;
-				switch (element.source.category) {
-					case "slot":
-						color2 = FontColor.Myth;
-						num3 = -1;
-						break;
-					case "feat":
-						color2 = FontColor.FoodMisc;
-						num3 = -1;
-						break;
-					case "ability":
-						color2 = FontColor.Topic2;
-						num3 = -1;
-						break;
-				}
+                for (int j = 0; j < __instance.vals.Count; j += 2)
+                {
+                    Element element = Element.Create(__instance.vals[j], __instance.vals[j + 1]);
+                    string text2 = "";
+                    int num3 = element.Value / 10;
+                    FontColor color2 = FontColor.Good;
+                    bool flag = false;
+                    switch (element.source.category)
+                    {
+                        case "slot":
+                            color2 = FontColor.Myth;
+                            num3 = -1;
+                            break;
+                        case "feat":
+                            color2 = FontColor.FoodMisc;
+                            num3 = -1;
+                            break;
+                        case "ability":
+                            color2 = FontColor.Topic2;
+                            num3 = -1;
+                            break;
+                        default:
+                            flag = true;
+                            break;
+                    }
 
-				if (num3 >= 0) {
-					text2 = text2 + "[" + "*".Repeat(Mathf.Clamp(num3, 1, 5)) + ((num3 > 5) ? "+" : "") + "]";
-				}
+                    if (num3 >= 0)
+                    {
+                        text2 = text2 + "[" + "*".Repeat(Mathf.Clamp(num3, 1, 5)) + ((num3 > 5) ? "+" : "") + "]";
+                    }
+                    text2 = text2 + " (" + element.Value + ")";
+                    
+
+                    n.AddText("gene_info".lang(element.Name.ToTitleCase(wholeText: true), text2), color2);
+                }
+            }
 
 
-				text2 = text2 + " " + $"({element.Value})";
-
-
-				n.AddText("gene_info".lang(element.Name.ToTitleCase(wholeText: true), text2), color2);
-			}
-		}
-		public static void Enchant_AddEncNote_Prefix(Element __instance, UINote n, Card Card, ElementContainer.NoteMode mode = ElementContainer.NoteMode.Default, Func<Element, string, string> funcText = null, Action<UINote, Element> onAddNote = null) {
+        public static void Enchant_AddEncNote_Prefix(Element __instance, UINote n, Card Card, ElementContainer.NoteMode mode = ElementContainer.NoteMode.Default, Func<Element, string, string> funcText = null, Action<UINote, Element> onAddNote = null) {
 
 			string text = "";
 			switch (mode) {
