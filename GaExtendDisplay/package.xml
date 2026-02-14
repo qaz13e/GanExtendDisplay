@@ -1,0 +1,12 @@
+<Meta>
+	<title>GanExtendDisplay</title>
+	<id>gan_extend_display</id>
+	<author>Gan@伪物</author>
+	<loadPriority>100</loadPriority>
+	<description>
+    Show more information, display roles, display enchantments of items
+    显示更多信息,角色显示，道具附魔显示
+    より多くの情報を表示, キャラクター表示, 道具の附魔表示
+  </description>
+	<version>0.23.108.9</version>
+</Meta>
