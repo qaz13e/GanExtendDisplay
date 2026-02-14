@@ -153,10 +153,10 @@ namespace GanExtendDisplay
 		//显示面板-基因
 		[HarmonyPrefix]
 		[HarmonyPatch(typeof(DNA), nameof(DNA.WriteNote))]
-		public static bool DNA_WriteNote_Prefix(DNA __instance, UINote n) {
+		public static bool DNA_WriteNote_Prefix(DNA __instance, UINote n, Chara tg) {
 			if (!Main.ModEnable) { return true; }
 			if (!EnchantDisplayConfig.CheckStatus) { return true; }
-			EnchantDisplayClass.DNA_WriteNote_Prefix(__instance, n);
+			EnchantDisplayClass.DNA_WriteNote_Prefix(__instance, n, tg);
 			return false;
 		}
 

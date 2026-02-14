@@ -17,13 +17,13 @@ using static LayerFaith;
 namespace GanExtendDisplay
 {
 	internal class EnchantDisplayClass {
-		public static void DNA_WriteNote_Prefix(DNA __instance, UINote n) {
+		public static void DNA_WriteNote_Prefix(DNA __instance, UINote n, Chara tg) {
                 if (__instance.slot >= 1)
                 {
                     n.AddText("isGeneReqSlots".lang(__instance.slot.ToString() ?? ""), FontColor.Warning);
                 }
 
-                if (!__instance.CanRemove())
+                if (!__instance.CanRemove(tg))
                 {
                     n.AddText("isPermaGene".lang(), FontColor.Warning);
                 }
@@ -83,7 +83,10 @@ namespace GanExtendDisplay
                     {
                         text2 = text2 + "[" + "*".Repeat(Mathf.Clamp(num3, 1, 5)) + ((num3 > 5) ? "+" : "") + "]";
                     }
-                    text2 = text2 + " (" + element.Value + ")";
+                    if (flag)
+                    {
+                        text2 = text2 + " (" + element.Value + ")";
+                    }
                     
 
                     n.AddText("gene_info".lang(element.Name.ToTitleCase(wholeText: true), text2), color2);
